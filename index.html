@@ -18,16 +18,58 @@
 }
 
 body{
-    padding:60px 15px;
     font-family:'Playfair Display', serif;
     overflow-x:hidden;
     background:#efe3c2;
-    animation:pageFade 1.5s ease forwards;
-    opacity:0;
 }
 
-@keyframes pageFade{
+/* ===== PRELOADER ===== */
+
+#preloader{
+    position:fixed;
+    width:100%;
+    height:100%;
+    background:#7a0028;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    z-index:9999;
+    transition:opacity 1s ease, visibility 1s ease;
+}
+
+.loader-ring{
+    width:80px;
+    height:80px;
+    border:3px solid rgba(232,194,122,0.3);
+    border-top:3px solid #e8c27a;
+    border-radius:50%;
+    animation:spin 1.5s linear infinite;
+}
+
+.loading-text{
+    margin-top:20px;
+    font-family:'Cinzel', serif;
+    color:#e8c27a;
+    letter-spacing:3px;
+    font-size:18px;
+    animation:pulse 2s infinite alternate;
+}
+
+@keyframes spin{
+    to{ transform:rotate(360deg); }
+}
+
+@keyframes pulse{
+    from{ opacity:0.5; }
     to{ opacity:1; }
+}
+
+/* ===== MAIN CONTENT HIDDEN INITIALLY ===== */
+
+#main-content{
+    opacity:0;
+    transition:opacity 1.5s ease;
 }
 
 /* ===== BACKGROUND ===== */
@@ -59,18 +101,13 @@ body{
 .flower-left,
 .flower-right{
     position:fixed;
-    top:-200px;
+    top:0;
     width:150px;
     z-index:-2;
-    animation:dropDown 2s ease forwards;
 }
 
 .flower-left{ left:0; }
 .flower-right{ right:0; transform:scaleX(-1); }
-
-@keyframes dropDown{
-    to{ top:0; }
-}
 
 /* ===== LIGHTS ===== */
 
@@ -120,9 +157,6 @@ body{
 .small-text{
     font-size:14px;
     line-height:1.7;
-    margin-bottom:12px;
-    opacity:0;
-    animation:textFade 2.5s ease forwards;
 }
 
 .names{
@@ -130,40 +164,27 @@ body{
     font-size:34px;
     margin:18px 0;
     letter-spacing:2px;
-    text-shadow:0 0 15px rgba(232,194,122,0.5);
-    animation:goldGlow 3s ease-in-out infinite alternate,
-              textFade 3s ease forwards;
-    opacity:0;
+    text-shadow:0 0 15px rgba(232,194,122,0.6);
+    animation:goldGlow 3s infinite alternate;
+}
+
+@keyframes goldGlow{
+    from{ text-shadow:0 0 10px rgba(232,194,122,0.3); }
+    to{ text-shadow:0 0 25px rgba(232,194,122,0.9); }
 }
 
 .amp{
     font-size:22px;
-    margin:5px 0;
-    opacity:0;
-    animation:textFade 3.5s ease forwards;
 }
 
 .details{
     margin-top:15px;
     font-size:15px;
-    opacity:0;
-    animation:textFade 4s ease forwards;
 }
 
 .footer-text{
     margin-top:25px;
     font-size:15px;
-    opacity:0;
-    animation:textFade 4.5s ease forwards;
-}
-
-@keyframes textFade{
-    to{ opacity:1; }
-}
-
-@keyframes goldGlow{
-    from{ text-shadow:0 0 10px rgba(232,194,122,0.3); }
-    to{ text-shadow:0 0 25px rgba(232,194,122,0.8); }
 }
 
 /* ===== BUTTON ===== */
@@ -178,8 +199,6 @@ body{
     border-radius:30px;
     cursor:pointer;
     transition:all 0.4s ease;
-    opacity:0;
-    animation:textFade 5s ease forwards;
 }
 
 .location-btn:hover{
@@ -192,7 +211,7 @@ body{
 
 .designer{
     text-align:center;
-    margin-top:25px;
+    margin:25px 0;
     font-size:10px;
     letter-spacing:1px;
     color:#7a0028;
@@ -204,45 +223,27 @@ body{
     text-decoration:none;
 }
 
-/* ===== DESKTOP ===== */
+/* ===== RESPONSIVE ===== */
 
 @media(min-width:768px){
-
-    body{
-        padding:100px 20px;
-    }
-
-    .invite-card{
-        padding:100px 50px;
-        margin-top:160px;
-    }
-
-    .names{
-        font-size:60px;
-    }
-
-    .small-text{
-        font-size:18px;
-    }
-
-    .details{
-        font-size:18px;
-    }
-
-    .flower-left,
-    .flower-right{
-        width:260px;
-    }
-
-    .light{
-        width:80px;
-    }
+    .names{ font-size:60px; }
+    .flower-left,.flower-right{ width:260px; }
+    .light{ width:80px; }
 }
 
 </style>
 </head>
 
 <body>
+
+<!-- PRELOADER -->
+<div id="preloader">
+    <div class="loader-ring"></div>
+    <div class="loading-text">Wedding Invitation</div>
+</div>
+
+<!-- MAIN CONTENT -->
+<div id="main-content">
 
 <div class="background-layer"></div>
 <div class="background-overlay"></div>
@@ -291,14 +292,28 @@ body{
 <div class="designer">
     Designed by 
     <a href="https://instagram.com/ak.sheyyy_" target="_blank">
-        ak.sheyyy_
+        Akshay pkr
     </a>
 </div>
 
+</div>
+
 <script>
+
 function openLocation(){
     window.open("https://maps.app.goo.gl/CAypXF4dqBvcaAts9?g_st=aw", "_blank");
 }
+
+/* PRELOADER CONTROL */
+
+window.addEventListener("load", function(){
+    setTimeout(function(){
+        document.getElementById("preloader").style.opacity="0";
+        document.getElementById("preloader").style.visibility="hidden";
+        document.getElementById("main-content").style.opacity="1";
+    }, 2000);
+});
+
 </script>
 
 </body>
