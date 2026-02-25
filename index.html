@@ -3,14 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Harisha & Rahul Wedding</title>
+<title>Wedding Invitation</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Playfair+Display:wght@400;500&display=swap" rel="stylesheet">
 
 <style>
 
-/* ===== RESET ===== */
-*{ box-sizing:border-box; margin:0; padding:0; }
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
 
 body{
     font-family:'Playfair Display', serif;
@@ -18,7 +21,7 @@ body{
     background:#efe3c2;
 }
 
-/* ===== PREMIUM LOADER ===== */
+/* ===== PRELOADER ===== */
 #preloader{
     position:fixed;
     width:100%;
@@ -33,8 +36,8 @@ body{
 }
 
 .loader-ring{
-    width:80px;
-    height:80px;
+    width:70px;
+    height:70px;
     border:3px solid rgba(232,194,122,0.3);
     border-top:3px solid #e8c27a;
     border-radius:50%;
@@ -42,21 +45,15 @@ body{
 }
 
 .loading-text{
-    margin-top:20px;
+    margin-top:15px;
     font-family:'Cinzel', serif;
     color:#e8c27a;
     letter-spacing:3px;
-    font-size:18px;
-    animation:pulse 2s infinite alternate;
+    font-size:16px;
 }
 
 @keyframes spin{
     to{ transform:rotate(360deg); }
-}
-
-@keyframes pulse{
-    from{ opacity:0.5; }
-    to{ opacity:1; }
 }
 
 /* ===== MAIN CONTENT ===== */
@@ -74,19 +71,13 @@ body{
     height:100%;
     background:url('bgimage.png') center/cover no-repeat;
     z-index:-4;
-    animation:slowZoom 25s ease-in-out infinite alternate;
-}
-
-@keyframes slowZoom{
-    from{ transform:scale(1); }
-    to{ transform:scale(1.05); }
 }
 
 .background-overlay{
     position:fixed;
     width:100%;
     height:100%;
-    background:rgba(122,0,40,0.85);
+    background:rgba(122,0,40,0.75);
     z-index:-3;
 }
 
@@ -117,25 +108,25 @@ body{
 .flower-left,
 .flower-right{
     position:absolute;
-    top:-100px;
-    width:150px;
+    top:-95px;
+    width:140px;
     z-index:5;
 }
 
-.flower-left{ left:-60px; }
-.flower-right{ right:-60px; transform:scaleX(-1); }
+.flower-left{ left:-50px; }
+.flower-right{ right:-50px; transform:scaleX(-1); }
 
-/* ===== LIGHTS (SMALLER + CORNERS) ===== */
+/* ===== LIGHTS ===== */
 .light{
     position:absolute;
-    width:45px;   /* smaller size */
-    top:-140px;
+    width:40px;
+    top:-130px;
     animation:swing 4s ease-in-out infinite;
     z-index:4;
 }
 
-.light.left{ left:-20px; }
-.light.right{ right:-20px; }
+.light.left{ left:-15px; }
+.light.right{ right:-15px; }
 
 @keyframes swing{
     0%{ transform:rotate(-6deg); }
@@ -145,44 +136,56 @@ body{
 
 /* ===== GLASS CARD ===== */
 .invite-card{
-    background:rgba(122,0,40,0.65);
+    background:rgba(122,0,40,0.40); /* More transparent */
     backdrop-filter:blur(12px);
     -webkit-backdrop-filter:blur(12px);
     color:#e8c27a;
     text-align:center;
     padding:60px 25px;
     border-radius:25px;
-    box-shadow:0 25px 70px rgba(0,0,0,0.5);
-    animation:cardReveal 1.8s ease forwards;
+    box-shadow:0 25px 60px rgba(0,0,0,0.5);
+    animation:fadeUp 1.5s ease forwards;
     position:relative;
     z-index:3;
 }
 
-@keyframes cardReveal{
+@keyframes fadeUp{
     from{ transform:translateY(40px); opacity:0; }
     to{ transform:translateY(0); opacity:1; }
 }
 
+/* ===== TOP TITLE ===== */
+.invite-title{
+    font-family:'Cinzel', serif;
+    font-size:18px;
+    letter-spacing:4px;
+    margin-bottom:25px;
+    color:#e8c27a;
+    text-transform:uppercase;
+    text-shadow:0 0 10px rgba(232,194,122,0.6);
+}
+
 /* ===== TEXT ===== */
-.small-text{ font-size:14px; line-height:1.7; }
+.small-text{
+    font-size:14px;
+    line-height:1.7;
+}
 
 .names{
     font-family:'Cinzel', serif;
     font-size:34px;
     margin:18px 0;
     letter-spacing:2px;
-    text-shadow:0 0 15px rgba(232,194,122,0.6);
 }
 
-.amp{ font-size:22px; }
+.amp{
+    font-size:22px;
+    margin:10px 0;
+}
 
-.details{ margin-top:15px; font-size:15px; }
-
-.footer-text{
-    margin-top:25px;
-    font-size:16px;
-    color:#fff4d6;
-    font-weight:500;
+.details{
+    margin-top:15px;
+    font-size:15px;
 }
 
 /* ===== BUTTON ===== */
@@ -201,7 +204,7 @@ body{
 .location-btn:hover{
     background:#e8c27a;
     color:#7a0028;
-    box-shadow:0 0 20px rgba(232,194,122,0.6);
+    box-shadow:0 0 15px rgba(232,194,122,0.6);
 }
 
 /* ===== DESIGNER ===== */
@@ -220,12 +223,8 @@ body{
 
 /* ===== RESPONSIVE ===== */
 @media(max-width:480px){
-    .flower-left,.flower-right{ width:120px; top:-85px; }
-    .light{ width:35px; top:-120px; }
-}
-
-@media(min-width:768px){
-    .names{ font-size:60px; }
+    .flower-left,.flower-right{ width:110px; top:-80px; }
+    .light{ width:32px; top:-110px; }
 }
 
 </style>
@@ -233,10 +232,9 @@ body{
 
 <body>
 
-<!-- PRELOADER -->
 <div id="preloader">
     <div class="loader-ring"></div>
-    <div class="loading-text">Wedding Invitation</div>
+    <div class="loading-text">Loading...</div>
 </div>
 
 <div id="main-content">
@@ -246,15 +244,15 @@ body{
 
 <div class="card-wrapper">
 
-    <!-- Decorations -->
     <img src="flower.png" class="flower-left">
     <img src="flower.png" class="flower-right">
 
     <img src="light.png" class="light left">
     <img src="light.png" class="light right">
 
-    <!-- Glass Card -->
     <div class="invite-card">
+
+        <div class="invite-title">Wedding Invitation</div>
 
         <div class="small-text">
             Mr Haridas Kurumkandathil <br>
@@ -283,10 +281,6 @@ body{
             📍 Get Location
         </button>
 
-        <div class="footer-text">
-            All are welcome
-        </div>
-
     </div>
 
 </div>
@@ -294,7 +288,7 @@ body{
 <div class="designer">
     Designed by 
     <a href="https://instagram.com/ak.sheyyy_" target="_blank">
-        Akshay pkr
+        ak.sheyyy_
     </a>
 </div>
 
@@ -306,17 +300,16 @@ function openLocation(){
     window.open("https://maps.app.goo.gl/CAypXF4dqBvcaAts9?g_st=aw", "_blank");
 }
 
-/* Loader fade reveal */
 window.addEventListener("load", function(){
     setTimeout(function(){
         document.getElementById("preloader").style.opacity="0";
         document.getElementById("preloader").style.visibility="hidden";
         document.getElementById("main-content").style.opacity="1";
-    }, 2000);
+    }, 1500);
 });
 
-/* Soft Falling Petals */
-for(let i=0;i<12;i++){
+/* Falling petals */
+for(let i=0;i<10;i++){
     let petal=document.createElement("img");
     petal.src="petals.png";
     petal.className="petal";
