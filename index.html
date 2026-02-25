@@ -1,4 +1,4 @@
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -10,11 +10,7 @@
 <style>
 
 /* ===== RESET ===== */
-*{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
-}
+*{ box-sizing:border-box; margin:0; padding:0; }
 
 body{
     font-family:'Playfair Display', serif;
@@ -22,19 +18,27 @@ body{
     background:#efe3c2;
 }
 
-/* ===== CURTAIN OPENING ===== */
+/* ===== REAL FOLD CURTAIN ===== */
 .curtain{
     position:fixed;
     top:0;
     width:50%;
     height:100%;
-    background:#7a0028;
     z-index:10000;
-    transition:transform 2s ease-in-out;
+    background:
+        repeating-linear-gradient(
+            90deg,
+            #7a0028 0px,
+            #7a0028 20px,
+            #8f0133 20px,
+            #8f0133 40px
+        );
+    box-shadow:inset -15px 0 40px rgba(0,0,0,0.6);
+    transition:transform 2.5s cubic-bezier(.77,0,.18,1);
 }
 
-.curtain.left{ left:0; }
-.curtain.right{ right:0; }
+.curtain.left{ left:0; border-right:3px solid #5a001d; }
+.curtain.right{ right:0; border-left:3px solid #5a001d; }
 
 .open-left{ transform:translateX(-100%); }
 .open-right{ transform:translateX(100%); }
@@ -62,14 +66,6 @@ body{
     animation:spin 1.5s linear infinite;
 }
 
-.loading-text{
-    margin-top:20px;
-    font-family:'Cinzel', serif;
-    color:#e8c27a;
-    letter-spacing:3px;
-    font-size:18px;
-}
-
 @keyframes spin{
     to{ transform:rotate(360deg); }
 }
@@ -79,7 +75,7 @@ body{
     opacity:0;
     transition:opacity 1.5s ease;
     position:relative;
-    padding-top:80px;
+    padding-top:140px;
 }
 
 /* ===== BACKGROUND ===== */
@@ -101,7 +97,7 @@ body{
     position:fixed;
     width:100%;
     height:100%;
-    background:rgba(122, 0, 40, 0.85);
+    background:rgba(122,0,40,0.85);
     z-index:-3;
 }
 
@@ -116,44 +112,41 @@ body{
 }
 
 @keyframes fall{
-    0%{
-        transform:translateY(0) rotate(0deg);
-        opacity:1;
-    }
-    100%{
-        transform:translateY(110vh) rotate(360deg);
-        opacity:0.7;
-    }
+    0%{ transform:translateY(0) rotate(0deg); opacity:1; }
+    100%{ transform:translateY(110vh) rotate(360deg); opacity:0.7; }
 }
 
-/* ===== DECORATIONS ===== */
-.decorations{
+/* ===== CARD WRAPPER ===== */
+.card-wrapper{
     position:relative;
+    width:92%;
     max-width:480px;
     margin:0 auto;
 }
 
+/* ===== FLOWERS ATTACHED TO CARD ===== */
 .flower-left,
 .flower-right{
     position:absolute;
-    top:-60px;
-    width:130px;
-    z-index:2;
+    top:-110px;
+    width:160px;
+    z-index:5;
 }
 
-.flower-left{ left:-40px; }
-.flower-right{ right:-40px; transform:scaleX(-1); }
+.flower-left{ left:-60px; }
+.flower-right{ right:-60px; transform:scaleX(-1); }
 
+/* ===== LIGHTS ABOVE CARD ===== */
 .light{
     position:absolute;
-    width:55px;
-    top:-90px;
+    width:70px;
+    top:-150px;
     animation:swing 4s ease-in-out infinite;
-    z-index:1;
+    z-index:4;
 }
 
-.light.left{ left:15%; }
-.light.right{ right:15%; }
+.light.left{ left:18%; }
+.light.right{ right:18%; }
 
 @keyframes swing{
     0%{ transform:rotate(-6deg); }
@@ -161,12 +154,9 @@ body{
     100%{ transform:rotate(-6deg); }
 }
 
-/* ===== INVITE CARD ===== */
+/* ===== GLASS CARD ===== */
 .invite-card{
-    width:92%;
-    max-width:480px;
-    margin:120px auto 0 auto;
-    background:rgba(122, 0, 40, 0.65);
+    background:rgba(122,0,40,0.65);
     backdrop-filter:blur(12px);
     -webkit-backdrop-filter:blur(12px);
     color:#e8c27a;
@@ -184,10 +174,8 @@ body{
     to{ transform:translateY(0); opacity:1; }
 }
 
-.small-text{
-    font-size:14px;
-    line-height:1.7;
-}
+/* ===== TEXT ===== */
+.small-text{ font-size:14px; line-height:1.7; }
 
 .names{
     font-family:'Cinzel', serif;
@@ -199,10 +187,7 @@ body{
 
 .amp{ font-size:22px; }
 
-.details{
-    margin-top:15px;
-    font-size:15px;
-}
+.details{ margin-top:15px; font-size:15px; }
 
 .footer-text{
     margin-top:25px;
@@ -211,6 +196,7 @@ body{
     font-weight:500;
 }
 
+/* ===== BUTTON ===== */
 .location-btn{
     margin-top:20px;
     padding:10px 24px;
@@ -229,6 +215,7 @@ body{
     box-shadow:0 0 20px rgba(232,194,122,0.6);
 }
 
+/* ===== DESIGNER ===== */
 .designer{
     text-align:center;
     margin:30px 0;
@@ -243,10 +230,13 @@ body{
 }
 
 /* ===== RESPONSIVE ===== */
+@media(max-width:480px){
+    .flower-left,.flower-right{ width:120px; top:-90px; }
+    .light{ width:55px; top:-130px; }
+}
+
 @media(min-width:768px){
     .names{ font-size:60px; }
-    .flower-left,.flower-right{ width:220px; }
-    .light{ width:80px; }
 }
 
 </style>
@@ -254,14 +244,13 @@ body{
 
 <body>
 
-<!-- CURTAINS -->
+<!-- REAL CURTAINS -->
 <div class="curtain left"></div>
 <div class="curtain right"></div>
 
 <!-- PRELOADER -->
 <div id="preloader">
     <div class="loader-ring"></div>
-    <div class="loading-text">Wedding Invitation</div>
 </div>
 
 <div id="main-content">
@@ -269,14 +258,16 @@ body{
 <div class="background-layer"></div>
 <div class="background-overlay"></div>
 
-<div class="decorations">
+<div class="card-wrapper">
 
+    <!-- Decorations Attached To Card -->
     <img src="flower.png" class="flower-left">
     <img src="flower.png" class="flower-right">
 
     <img src="light.png" class="light left">
     <img src="light.png" class="light right">
 
+    <!-- Glass Card -->
     <div class="invite-card">
 
         <div class="small-text">
@@ -329,22 +320,21 @@ function openLocation(){
     window.open("https://maps.app.goo.gl/CAypXF4dqBvcaAts9?g_st=aw", "_blank");
 }
 
-/* PRELOADER + CURTAIN */
+/* Curtain + Preloader */
 window.addEventListener("load", function(){
     setTimeout(function(){
         document.getElementById("preloader").style.opacity="0";
         document.getElementById("preloader").style.visibility="hidden";
         document.getElementById("main-content").style.opacity="1";
-
         document.querySelector(".left").classList.add("open-left");
         document.querySelector(".right").classList.add("open-right");
-    }, 2000);
+    }, 1800);
 });
 
-/* PETALS GENERATOR */
+/* Soft Falling Petals */
 for(let i=0;i<15;i++){
     let petal=document.createElement("img");
-    petal.src="https://pngimg.com/uploads/rose_petals/rose_petals_PNG25.png";
+    petal.src="petals.png";
     petal.className="petal";
     petal.style.left=Math.random()*100+"vw";
     petal.style.animationDuration=(6+Math.random()*6)+"s";
