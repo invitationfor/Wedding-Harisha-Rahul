@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Harisha & Rahul Wedding</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Playfair+Display:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+
+/* ================= RESET ================= */
+
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    padding:0;
+    font-family:'Playfair Display', serif;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+    overflow-x:hidden;
+}
+
+/* ================= BACKGROUND ================= */
+
+.background-layer{
+    position:fixed;
+    width:100%;
+    height:100%;
+    background:url('bgimage.png') center/cover no-repeat;
+    z-index:-4;
+}
+
+.background-overlay{
+    position:fixed;
+    width:100%;
+    height:100%;
+    background:rgba(239,227,194,0.85);
+    z-index:-3;
+}
+
+/* ================= FLOWERS ================= */
+
+.flower-left,
+.flower-right{
+    position:fixed;
+    top:0;
+    width:180px;
+    z-index:-2;
+}
+
+.flower-left{ left:0; }
+.flower-right{ right:0; transform:scaleX(-1); }
+
+/* ================= LIGHTS ================= */
+
+.light{
+    position:fixed;
+    width:60px;
+    top:0;
+    animation:swing 4s ease-in-out infinite;
+    z-index:-1;
+}
+
+.light.left{ left:10%; }
+.light.right{ right:10%; }
+
+@keyframes swing{
+    0%{ transform:rotate(-6deg); }
+    50%{ transform:rotate(6deg); }
+    100%{ transform:rotate(-6deg); }
+}
+
+/* ================= PARTICLES ================= */
+
+.particles span{
+    position:absolute;
+    width:5px;
+    height:5px;
+    background:rgba(232,194,122,0.8);
+    border-radius:50%;
+    animation:float 12s linear infinite;
+}
+
+@keyframes float{
+    from{ transform:translateY(100vh); opacity:0; }
+    20%{ opacity:1; }
+    to{ transform:translateY(-10vh); opacity:0; }
+}
+
+/* ================= CARD ================= */
+
+.invite-card{
+    width:95%;
+    max-width:600px;
+    background:#7a0028;
+    color:#e8c27a;
+    text-align:center;
+    padding:60px 25px;
+    border-radius:25px;
+    box-shadow:0 20px 60px rgba(0,0,0,0.5);
+    animation:breathe 6s ease-in-out infinite,
+              cinematicFade 2s ease forwards;
+    opacity:0;
+}
+
+@keyframes cinematicFade{
+    to{ opacity:1; transform:translateY(0); }
+}
+
+@keyframes breathe{
+    0%{ transform:scale(1); }
+    50%{ transform:scale(1.015); }
+    100%{ transform:scale(1); }
+}
+
+/* ================= TEXT ================= */
+
+.small-text{
+    font-size:15px;
+    line-height:1.7;
+    margin-bottom:10px;
+    animation:fadeText 3s ease forwards;
+    opacity:0;
+}
+
+.names{
+    font-family:'Cinzel', serif;
+    font-size:36px;
+    margin:15px 0;
+    letter-spacing:2px;
+    text-shadow:0 0 15px rgba(232,194,122,0.5);
+    animation:fadeText 4s ease forwards;
+    opacity:0;
+}
+
+.amp{
+    font-size:24px;
+    margin:5px 0;
+    animation:fadeText 4.5s ease forwards;
+    opacity:0;
+}
+
+.details{
+    margin-top:15px;
+    font-size:16px;
+    animation:fadeText 5s ease forwards;
+    opacity:0;
+}
+
+.footer-text{
+    margin-top:25px;
+    font-size:18px;
+    animation:fadeText 5.5s ease forwards;
+    opacity:0;
+}
+
+@keyframes fadeText{
+    to{ opacity:1; }
+}
+
+/* ================= BUTTON ================= */
+
+.location-btn{
+    margin-top:20px;
+    padding:10px 24px;
+    background:transparent;
+    border:2px solid #e8c27a;
+    color:#e8c27a;
+    font-size:14px;
+    border-radius:30px;
+    cursor:pointer;
+    transition:all 0.3s ease;
+    animation:fadeText 6s ease forwards;
+    opacity:0;
+}
+
+.location-btn:hover{
+    background:#e8c27a;
+    color:#7a0028;
+}
+
+/* ================= DESIGNER ================= */
+
+.designer{
+    margin-top:30px;
+    font-size:12px;
+    opacity:0.8;
+}
+
+.designer a{
+    color:#e8c27a;
+    text-decoration:none;
+}
+
+/* ================= DESKTOP ENHANCEMENT ================= */
+
+@media(min-width:768px){
+
+    .invite-card{
+        padding:90px 40px;
+    }
+
+    .names{
+        font-size:64px;
+    }
+
+    .small-text{
+        font-size:18px;
+    }
+
+    .details{
+        font-size:20px;
+    }
+
+    .flower-left,
+    .flower-right{
+        width:260px;
+    }
+
+    .light{
+        width:80px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="background-layer"></div>
+<div class="background-overlay"></div>
+
+<img src="https://pngimg.com/uploads/rose/rose_PNG667.png" class="flower-left">
+<img src="https://pngimg.com/uploads/rose/rose_PNG667.png" class="flower-right">
+
+<img src="https://pngimg.com/uploads/lamp/lamp_PNG101412.png" class="light left">
+<img src="https://pngimg.com/uploads/lamp/lamp_PNG101412.png" class="light right">
+
+<div class="particles"></div>
+
+<div class="invite-card">
+
+    <div class="small-text">
+        Mr Haridas Kurumkandathil <br>
+        & Mrs Sheeba Haridas <br><br>
+        cordially invite you to the wedding of our daughter
+    </div>
+
+    <div class="names">Harisha</div>
+    <div class="amp">&</div>
+    <div class="names">Rahul</div>
+
+    <div class="small-text">
+        son of <br>
+        Mr Raju <br>
+        & Mrs Geetha Raju
+    </div>
+
+    <div class="details">
+        Sunday, April 26 <br>
+        10:30 am to 11:30 am <br><br>
+        at <br>
+        Pukayoor, Avanazhi
+    </div>
+
+    <button class="location-btn" onclick="openLocation()">
+        📍 Get Location
+    </button>
+
+    <div class="footer-text">
+        All are welcome
+    </div>
+
+    <div class="designer">
+        Designed by 
+        <a href="https://instagram.com/ak.sheyyy_" target="_blank">
+            ak.sheyyy_
+        </a>
+    </div>
+
+</div>
+
+<script>
+function openLocation(){
+    window.open("https://maps.app.goo.gl/CAypXF4dqBvcaAts9?g_st=aw", "_blank");
+}
+
+const particles = document.querySelector('.particles');
+for(let i=0;i<20;i++){
+    let span = document.createElement('span');
+    span.style.left = Math.random()*100 + "vw";
+    span.style.animationDuration = (8 + Math.random()*6) + "s";
+    span.style.animationDelay = Math.random()*5 + "s";
+    document.querySelector('.particles').appendChild(span);
+}
+</script>
+
+</body>
+</html>
