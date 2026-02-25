@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -21,6 +21,23 @@ body{
     overflow-x:hidden;
     background:#efe3c2;
 }
+
+/* ===== CURTAIN OPENING ===== */
+.curtain{
+    position:fixed;
+    top:0;
+    width:50%;
+    height:100%;
+    background:#7a0028;
+    z-index:10000;
+    transition:transform 2s ease-in-out;
+}
+
+.curtain.left{ left:0; }
+.curtain.right{ right:0; }
+
+.open-left{ transform:translateX(-100%); }
+.open-right{ transform:translateX(100%); }
 
 /* ===== PRELOADER ===== */
 #preloader{
@@ -51,22 +68,18 @@ body{
     color:#e8c27a;
     letter-spacing:3px;
     font-size:18px;
-    animation:pulse 2s infinite alternate;
 }
 
 @keyframes spin{
     to{ transform:rotate(360deg); }
 }
 
-@keyframes pulse{
-    from{ opacity:0.5; }
-    to{ opacity:1; }
-}
-
 /* ===== MAIN CONTENT ===== */
 #main-content{
     opacity:0;
     transition:opacity 1.5s ease;
+    position:relative;
+    padding-top:80px;
 }
 
 /* ===== BACKGROUND ===== */
@@ -92,29 +105,55 @@ body{
     z-index:-3;
 }
 
-/* ===== FLOWERS ===== */
+/* ===== PETALS ===== */
+.petal{
+    position:fixed;
+    top:-50px;
+    width:25px;
+    pointer-events:none;
+    animation:fall linear infinite;
+    z-index:0;
+}
+
+@keyframes fall{
+    0%{
+        transform:translateY(0) rotate(0deg);
+        opacity:1;
+    }
+    100%{
+        transform:translateY(110vh) rotate(360deg);
+        opacity:0.7;
+    }
+}
+
+/* ===== DECORATIONS ===== */
+.decorations{
+    position:relative;
+    max-width:480px;
+    margin:0 auto;
+}
+
 .flower-left,
 .flower-right{
-    position:fixed;
-    top:0;
-    width:150px;
-    z-index:-2;
+    position:absolute;
+    top:-60px;
+    width:130px;
+    z-index:2;
 }
 
-.flower-left{ left:0; }
-.flower-right{ right:0; transform:scaleX(-1); }
+.flower-left{ left:-40px; }
+.flower-right{ right:-40px; transform:scaleX(-1); }
 
-/* ===== LIGHTS ===== */
 .light{
-    position:fixed;
+    position:absolute;
     width:55px;
-    top:0;
+    top:-90px;
     animation:swing 4s ease-in-out infinite;
-    z-index:-1;
+    z-index:1;
 }
 
-.light.left{ left:10%; }
-.light.right{ right:10%; }
+.light.left{ left:15%; }
+.light.right{ right:15%; }
 
 @keyframes swing{
     0%{ transform:rotate(-6deg); }
@@ -122,7 +161,7 @@ body{
     100%{ transform:rotate(-6deg); }
 }
 
-/* ===== INVITATION CARD ===== */
+/* ===== INVITE CARD ===== */
 .invite-card{
     width:92%;
     max-width:480px;
@@ -135,19 +174,16 @@ body{
     padding:60px 25px;
     border-radius:25px;
     box-shadow:0 25px 70px rgba(0,0,0,0.5);
-    transform:translateY(40px);
-    opacity:0;
     animation:cardReveal 1.8s ease forwards;
+    position:relative;
+    z-index:3;
 }
 
 @keyframes cardReveal{
-    to{
-        transform:translateY(0);
-        opacity:1;
-    }
+    from{ transform:translateY(40px); opacity:0; }
+    to{ transform:translateY(0); opacity:1; }
 }
 
-/* ===== TEXT ===== */
 .small-text{
     font-size:14px;
     line-height:1.7;
@@ -159,17 +195,9 @@ body{
     margin:18px 0;
     letter-spacing:2px;
     text-shadow:0 0 15px rgba(232,194,122,0.6);
-    animation:goldGlow 3s infinite alternate;
 }
 
-@keyframes goldGlow{
-    from{ text-shadow:0 0 10px rgba(232,194,122,0.3); }
-    to{ text-shadow:0 0 25px rgba(232,194,122,0.9); }
-}
-
-.amp{
-    font-size:22px;
-}
+.amp{ font-size:22px; }
 
 .details{
     margin-top:15px;
@@ -183,7 +211,6 @@ body{
     font-weight:500;
 }
 
-/* ===== BUTTON ===== */
 .location-btn{
     margin-top:20px;
     padding:10px 24px;
@@ -202,26 +229,23 @@ body{
     box-shadow:0 0 20px rgba(232,194,122,0.6);
 }
 
-/* ===== DESIGNER FOOTER ===== */
 .designer{
     text-align:center;
-    margin:25px 0;
+    margin:30px 0;
     font-size:11px;
     letter-spacing:1px;
     color:#fff4d6;
-    opacity:0.9;
 }
 
 .designer a{
     color:#fff4d6;
     text-decoration:none;
-    font-weight:500;
 }
 
 /* ===== RESPONSIVE ===== */
 @media(min-width:768px){
     .names{ font-size:60px; }
-    .flower-left,.flower-right{ width:260px; }
+    .flower-left,.flower-right{ width:220px; }
     .light{ width:80px; }
 }
 
@@ -230,6 +254,11 @@ body{
 
 <body>
 
+<!-- CURTAINS -->
+<div class="curtain left"></div>
+<div class="curtain right"></div>
+
+<!-- PRELOADER -->
 <div id="preloader">
     <div class="loader-ring"></div>
     <div class="loading-text">Wedding Invitation</div>
@@ -240,43 +269,47 @@ body{
 <div class="background-layer"></div>
 <div class="background-overlay"></div>
 
-<img src="flower.png" class="flower-left">
-<img src="flower.png" class="flower-right">
+<div class="decorations">
 
-<img src="light.png" class="light left">
-<img src="light.png" class="light right">
+    <img src="flower.png" class="flower-left">
+    <img src="flower.png" class="flower-right">
 
-<div class="invite-card">
+    <img src="light.png" class="light left">
+    <img src="light.png" class="light right">
 
-    <div class="small-text">
-        Mr Haridas Kurumkandathil <br>
-        & Mrs Sheeba Haridas <br><br>
-        cordially invite you to the wedding of our daughter
-    </div>
+    <div class="invite-card">
 
-    <div class="names">Harisha</div>
-    <div class="amp">&</div>
-    <div class="names">Rahul</div>
+        <div class="small-text">
+            Mr Haridas Kurumkandathil <br>
+            & Mrs Sheeba Haridas <br><br>
+            cordially invite you to the wedding of our daughter
+        </div>
 
-    <div class="small-text">
-        son of <br>
-        Mr Raju <br>
-        & Mrs Geetha Raju
-    </div>
+        <div class="names">Harisha</div>
+        <div class="amp">&</div>
+        <div class="names">Rahul</div>
 
-    <div class="details">
-        Sunday, April 26 <br>
-        10:30 am to 11:30 am <br><br>
-        at <br>
-        Pukayoor, Avanazhi
-    </div>
+        <div class="small-text">
+            son of <br>
+            Mr Raju <br>
+            & Mrs Geetha Raju
+        </div>
 
-    <button class="location-btn" onclick="openLocation()">
-        📍 Get Location
-    </button>
+        <div class="details">
+            Sunday, April 26 <br>
+            10:30 am to 11:30 am <br><br>
+            at <br>
+            Pukayoor, Avanazhi
+        </div>
 
-    <div class="footer-text">
-        All are welcome
+        <button class="location-btn" onclick="openLocation()">
+            📍 Get Location
+        </button>
+
+        <div class="footer-text">
+            All are welcome
+        </div>
+
     </div>
 
 </div>
@@ -291,17 +324,34 @@ body{
 </div>
 
 <script>
+
 function openLocation(){
     window.open("https://maps.app.goo.gl/CAypXF4dqBvcaAts9?g_st=aw", "_blank");
 }
 
+/* PRELOADER + CURTAIN */
 window.addEventListener("load", function(){
     setTimeout(function(){
         document.getElementById("preloader").style.opacity="0";
         document.getElementById("preloader").style.visibility="hidden";
         document.getElementById("main-content").style.opacity="1";
+
+        document.querySelector(".left").classList.add("open-left");
+        document.querySelector(".right").classList.add("open-right");
     }, 2000);
 });
+
+/* PETALS GENERATOR */
+for(let i=0;i<15;i++){
+    let petal=document.createElement("img");
+    petal.src="https://pngimg.com/uploads/rose_petals/rose_petals_PNG25.png";
+    petal.className="petal";
+    petal.style.left=Math.random()*100+"vw";
+    petal.style.animationDuration=(6+Math.random()*6)+"s";
+    petal.style.opacity=Math.random();
+    document.body.appendChild(petal);
+}
+
 </script>
 
 </body>
