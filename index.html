@@ -8,7 +8,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Playfair+Display:wght@400;500&display=swap" rel="stylesheet">
 
 <style>
-
 *{
     box-sizing:border-box;
     margin:0;
@@ -18,7 +17,6 @@
 body{
     font-family:'Playfair Display', serif;
     overflow-x:hidden;
-    background:#efe3c2;
 }
 
 /* ===== PRELOADER ===== */
@@ -49,7 +47,7 @@ body{
     font-family:'Cinzel', serif;
     color:#e8c27a;
     letter-spacing:3px;
-    font-size:16px;
+    font-size:18px;
 }
 
 @keyframes spin{
@@ -61,7 +59,7 @@ body{
     opacity:0;
     transition:opacity 1.5s ease;
     position:relative;
-    padding-top:140px;
+    padding-top:120px;
 }
 
 /* ===== BACKGROUND ===== */
@@ -77,8 +75,22 @@ body{
     position:fixed;
     width:100%;
     height:100%;
-    background:rgba(122,0,40,0.75);
+    background:rgba(122,0,40,0.70);
     z-index:-3;
+}
+
+/* ===== TOP TITLE OUTSIDE CARD ===== */
+.top-title{
+    position:absolute;
+    top:40px;
+    width:100%;
+    text-align:center;
+    font-family:'Cinzel', serif;
+    font-size:22px;
+    letter-spacing:5px;
+    color:#ffffff;
+    text-transform:uppercase;
+    z-index:10;
 }
 
 /* ===== PETALS ===== */
@@ -119,7 +131,7 @@ body{
 /* ===== LIGHTS ===== */
 .light{
     position:absolute;
-    width:40px;
+    width:35px;
     top:-130px;
     animation:swing 4s ease-in-out infinite;
     z-index:4;
@@ -136,14 +148,14 @@ body{
 
 /* ===== GLASS CARD ===== */
 .invite-card{
-    background:rgba(122,0,40,0.40); /* More transparent */
-    backdrop-filter:blur(12px);
-    -webkit-backdrop-filter:blur(12px);
+    background:rgba(122,0,40,0.25); /* More More Transparent */
+    backdrop-filter:blur(10px);
+    -webkit-backdrop-filter:blur(10px);
     color:#e8c27a;
     text-align:center;
     padding:60px 25px;
     border-radius:25px;
-    box-shadow:0 25px 60px rgba(0,0,0,0.5);
+    box-shadow:0 20px 50px rgba(0,0,0,0.4);
     animation:fadeUp 1.5s ease forwards;
     position:relative;
     z-index:3;
@@ -154,18 +166,6 @@ body{
     to{ transform:translateY(0); opacity:1; }
 }
 
-/* ===== TOP TITLE ===== */
-.invite-title{
-    font-family:'Cinzel', serif;
-    font-size:18px;
-    letter-spacing:4px;
-    margin-bottom:25px;
-    color:#e8c27a;
-    text-transform:uppercase;
-    text-shadow:0 0 10px rgba(232,194,122,0.6);
-}
-
-/* ===== TEXT ===== */
 .small-text{
     font-size:14px;
     line-height:1.7;
@@ -204,7 +204,6 @@ body{
 .location-btn:hover{
     background:#e8c27a;
     color:#7a0028;
-    box-shadow:0 0 15px rgba(232,194,122,0.6);
 }
 
 /* ===== DESIGNER ===== */
@@ -224,7 +223,8 @@ body{
 /* ===== RESPONSIVE ===== */
 @media(max-width:480px){
     .flower-left,.flower-right{ width:110px; top:-80px; }
-    .light{ width:32px; top:-110px; }
+    .light{ width:28px; top:-110px; }
+    .top-title{ font-size:18px; }
 }
 
 </style>
@@ -232,15 +232,21 @@ body{
 
 <body>
 
+<!-- PRELOADER -->
 <div id="preloader">
     <div class="loader-ring"></div>
-    <div class="loading-text">Loading...</div>
+    <div class="loading-text">Wedding Invitation</div>
 </div>
 
 <div id="main-content">
 
 <div class="background-layer"></div>
 <div class="background-overlay"></div>
+
+<!-- OUTSIDE TITLE -->
+<div class="top-title">
+    Wedding Invitation
+</div>
 
 <div class="card-wrapper">
 
@@ -251,8 +257,6 @@ body{
     <img src="light.png" class="light right">
 
     <div class="invite-card">
-
-        <div class="invite-title">Wedding Invitation</div>
 
         <div class="small-text">
             Mr Haridas Kurumkandathil <br>
@@ -288,7 +292,7 @@ body{
 <div class="designer">
     Designed by 
     <a href="https://instagram.com/ak.sheyyy_" target="_blank">
-        ak.sheyyy_
+        Akshay pkr
     </a>
 </div>
 
