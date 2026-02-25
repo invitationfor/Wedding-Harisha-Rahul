@@ -18,32 +18,7 @@ body{
     background:#efe3c2;
 }
 
-/* ===== REAL FOLD CURTAIN ===== */
-.curtain{
-    position:fixed;
-    top:0;
-    width:50%;
-    height:100%;
-    z-index:10000;
-    background:
-        repeating-linear-gradient(
-            90deg,
-            #7a0028 0px,
-            #7a0028 20px,
-            #8f0133 20px,
-            #8f0133 40px
-        );
-    box-shadow:inset -15px 0 40px rgba(0,0,0,0.6);
-    transition:transform 2.5s cubic-bezier(.77,0,.18,1);
-}
-
-.curtain.left{ left:0; border-right:3px solid #5a001d; }
-.curtain.right{ right:0; border-left:3px solid #5a001d; }
-
-.open-left{ transform:translateX(-100%); }
-.open-right{ transform:translateX(100%); }
-
-/* ===== PRELOADER ===== */
+/* ===== PREMIUM LOADER ===== */
 #preloader{
     position:fixed;
     width:100%;
@@ -66,8 +41,22 @@ body{
     animation:spin 1.5s linear infinite;
 }
 
+.loading-text{
+    margin-top:20px;
+    font-family:'Cinzel', serif;
+    color:#e8c27a;
+    letter-spacing:3px;
+    font-size:18px;
+    animation:pulse 2s infinite alternate;
+}
+
 @keyframes spin{
     to{ transform:rotate(360deg); }
+}
+
+@keyframes pulse{
+    from{ opacity:0.5; }
+    to{ opacity:1; }
 }
 
 /* ===== MAIN CONTENT ===== */
@@ -105,7 +94,7 @@ body{
 .petal{
     position:fixed;
     top:-50px;
-    width:25px;
+    width:22px;
     pointer-events:none;
     animation:fall linear infinite;
     z-index:0;
@@ -124,29 +113,29 @@ body{
     margin:0 auto;
 }
 
-/* ===== FLOWERS ATTACHED TO CARD ===== */
+/* ===== FLOWERS ===== */
 .flower-left,
 .flower-right{
     position:absolute;
-    top:-110px;
-    width:160px;
+    top:-100px;
+    width:150px;
     z-index:5;
 }
 
 .flower-left{ left:-60px; }
 .flower-right{ right:-60px; transform:scaleX(-1); }
 
-/* ===== LIGHTS ABOVE CARD ===== */
+/* ===== LIGHTS (SMALLER + CORNERS) ===== */
 .light{
     position:absolute;
-    width:70px;
-    top:-150px;
+    width:45px;   /* smaller size */
+    top:-140px;
     animation:swing 4s ease-in-out infinite;
     z-index:4;
 }
 
-.light.left{ left:18%; }
-.light.right{ right:18%; }
+.light.left{ left:-20px; }
+.light.right{ right:-20px; }
 
 @keyframes swing{
     0%{ transform:rotate(-6deg); }
@@ -231,8 +220,8 @@ body{
 
 /* ===== RESPONSIVE ===== */
 @media(max-width:480px){
-    .flower-left,.flower-right{ width:120px; top:-90px; }
-    .light{ width:55px; top:-130px; }
+    .flower-left,.flower-right{ width:120px; top:-85px; }
+    .light{ width:35px; top:-120px; }
 }
 
 @media(min-width:768px){
@@ -244,13 +233,10 @@ body{
 
 <body>
 
-<!-- REAL CURTAINS -->
-<div class="curtain left"></div>
-<div class="curtain right"></div>
-
 <!-- PRELOADER -->
 <div id="preloader">
     <div class="loader-ring"></div>
+    <div class="loading-text">Wedding Invitation</div>
 </div>
 
 <div id="main-content">
@@ -260,7 +246,7 @@ body{
 
 <div class="card-wrapper">
 
-    <!-- Decorations Attached To Card -->
+    <!-- Decorations -->
     <img src="flower.png" class="flower-left">
     <img src="flower.png" class="flower-right">
 
@@ -320,19 +306,17 @@ function openLocation(){
     window.open("https://maps.app.goo.gl/CAypXF4dqBvcaAts9?g_st=aw", "_blank");
 }
 
-/* Curtain + Preloader */
+/* Loader fade reveal */
 window.addEventListener("load", function(){
     setTimeout(function(){
         document.getElementById("preloader").style.opacity="0";
         document.getElementById("preloader").style.visibility="hidden";
         document.getElementById("main-content").style.opacity="1";
-        document.querySelector(".left").classList.add("open-left");
-        document.querySelector(".right").classList.add("open-right");
-    }, 1800);
+    }, 2000);
 });
 
 /* Soft Falling Petals */
-for(let i=0;i<15;i++){
+for(let i=0;i<12;i++){
     let petal=document.createElement("img");
     petal.src="petals.png";
     petal.className="petal";
